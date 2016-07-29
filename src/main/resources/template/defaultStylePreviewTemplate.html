@@ -1,0 +1,12 @@
+<!--预览视图-->
+<div id="picBanner" class="pic-banner">
+    <div>
+        <a th:href="${properties['linkUrl']}"><img  th:src="${properties.pcImg}"
+                                                    class="visible-xm hidden-lg img-responsive">
+        </a>
+        <a th:href="${properties['linkUrl']}"><img  th:src="${properties.mobileImg}"
+                                                    class="visible-lg hidden-xs img-responsive">
+        </a>
+    </div>
+</div>
+<!--/预览视图-->
