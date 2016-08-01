@@ -10,6 +10,8 @@
 package com.huotu.hotcms.widget.picBanner;
 
 import java.util.Locale;
+
+import com.huotu.hotcms.service.entity.support.WidgetIdentifier;
 import com.huotu.hotcms.widget.ComponentProperties;
 import com.huotu.hotcms.widget.Widget;
 import com.huotu.hotcms.widget.WidgetStyle;
@@ -17,6 +19,8 @@ import me.jiangcai.lib.resource.service.ResourceService;
 import org.apache.http.entity.ContentType;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.MediaType;
+
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -77,26 +81,24 @@ public class WidgetInfo implements Widget{
     }
 
 
-    @Override
-    public Resource widgetJs() {
-        return new ClassPathResource("js/picBanner.js", getClass().getClassLoader());
-    }
-
 
     @Override
     public Map<String, Resource> publicResources() {
         Map<String, Resource> map = new HashMap<>();
         map.put("thumbnail/defaultStyleThumbnail.png",new ClassPathResource("thumbnail/defaultStyleThumbnail.png",getClass().getClassLoader()));
-        map.put("img/sd03.png",new ClassPathResource("img/sd03.png",getClass().getClassLoader()));
         map.put("thumbnail.png",new ClassPathResource("thumbnail.png",getClass().getClassLoader()));
         map.put("js/picBanner.js",new ClassPathResource("js/picBanner.js",getClass().getClassLoader()));
         return map;
     }
 
     @Override
-    public Resource widgetDependencyContent(ContentType contentType) {
+    public Resource widgetDependencyContent(MediaType mediaType) {
+        if (mediaType.isCompatibleWith(Javascript)){
+            return new ClassPathResource("js/picBanner.js", getClass().getClassLoader());
+        }
         return null;
     }
+
 
     @Override
     public void valid(String styleId, ComponentProperties componentProperties) throws IllegalArgumentException {
@@ -132,9 +134,16 @@ public class WidgetInfo implements Widget{
     @Override
     public ComponentProperties defaultProperties(ResourceService resourceService) {
         ComponentProperties properties = new ComponentProperties();
-        properties.put(VALID_PC_IMG,"");
-        properties.put(VALID_MOBILE_IMG,"");
-        properties.put(VALID_PIC_URL,"");
+        try {
+            WidgetIdentifier identifier = new WidgetIdentifier(groupId(), widgetId(), version());
+            properties.put(VALID_PC_IMG, resourceService.getResource("widget/" + identifier.toURIEncoded()
+                    + "/" + "thumbnail/defaultStyleThumbnail.png").httpUrl().toURI().toString());
+            properties.put(VALID_MOBILE_IMG, resourceService.getResource("widget/" + identifier.toURIEncoded()
+                    + "/" + "thumbnail/defaultStyleThumbnail.png").httpUrl().toURI().toString());
+            properties.put(VALID_PIC_URL, "");
+        }catch (Exception e){
+
+        }
         return properties;
     }
 

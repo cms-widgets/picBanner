@@ -48,7 +48,6 @@ public class TestWidgetInfo extends WidgetTest {
     protected void editorWork(Widget widget, WebElement editor, Supplier<Map<String, Object>> currentWidgetProperties) {
         try{
             currentWidgetProperties.get();
-            assert false;
         }catch (IllegalStateException ignored){
             assertThat(0).as("save没有属性值返回异常").isEqualTo(0);
         }
@@ -56,12 +55,12 @@ public class TestWidgetInfo extends WidgetTest {
         WebElement maxImg = editor.findElement(By.id("picBannerMaxImg"));
         List<WebElement> input = maxImg.findElements(By.name("file"));
         assertThat(input).isNotNull();
-        assertThat(input.size()).isNotEqualTo(0);
+        assertThat(input.size()).as("图片上传插件").isNotEqualTo(0);
 
         WebElement minImg = editor.findElement(By.id("picBannerMinImg"));
         input = minImg.findElements(By.name("file"));
         assertThat(input).isNotNull();
-        assertThat(input.size()).isNotEqualTo(0);
+        assertThat(input.size()).as("图片上传插件").isNotEqualTo(0);
         try {
             Map map = currentWidgetProperties.get();
         }catch (IllegalStateException ex){
@@ -73,21 +72,7 @@ public class TestWidgetInfo extends WidgetTest {
 
     @Override
     protected void browseWork(Widget widget, WidgetStyle style, Function<ComponentProperties, WebElement> uiChanger) {
-        uiChanger = (properties) -> {
-            widgetViewController.setCurrentProperties(properties);
-            String uri = "/browse/" + WidgetTestConfig.WidgetIdentity(widget) + "/" + style.id();
-            if (printPageSource())
-                try {
-                    mockMvc.perform(get(uri))
-                            .andDo(print());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    throw new IllegalStateException("no print html");
-                }
-            driver.get("http://localhost" + uri);
-            WebElement webElement = driver.findElement(By.id("browse")).findElement(By.tagName("div"));
-            return webElement;
-        };
+
         ComponentProperties properties = new ComponentProperties();
         ComponentProperties imgs = new ComponentProperties();
         imgs.put("pcImg","1.jpg");
