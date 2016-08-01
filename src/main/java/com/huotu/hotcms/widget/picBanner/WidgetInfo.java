@@ -51,7 +51,7 @@ public class WidgetInfo implements Widget{
 
     @Override
     public String name(Locale locale) {
-        if (locale.equals(Locale.CHINESE)) {
+        if (locale.equals(Locale.CHINA)) {
             return "图片条幅";
         }
         return "picBanner";
@@ -64,8 +64,8 @@ public class WidgetInfo implements Widget{
 
     @Override
     public String description(Locale locale) {
-        if (locale.equals(Locale.CHINESE)) {
-            return description();
+        if (locale.equals(Locale.CHINA)) {
+            return "这是一个图片条幅，你可以对组件进行自定义修改。";
         }
         return "This is a picBanner,  you can make custom change the component.";
     }
