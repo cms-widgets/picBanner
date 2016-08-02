@@ -13,36 +13,30 @@ import com.huotu.hotcms.widget.ComponentProperties;
 import com.huotu.hotcms.widget.Widget;
 import com.huotu.hotcms.widget.WidgetStyle;
 import com.huotu.widget.test.WidgetTest;
-import com.huotu.widget.test.WidgetTestConfig;
 import com.huotu.widget.test.bean.WidgetViewController;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.beans.PropertyDescriptor;
-import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 /**
  * @author CJ
  */
 public class TestWidgetInfo extends WidgetTest {
 
+    @Autowired
+    private WidgetViewController widgetViewController;
+
     @Override
     protected boolean printPageSource() {
         return false;
     }
-
-    @Autowired
-    private WidgetViewController widgetViewController;
 
     @Override
     protected void editorWork(Widget widget, WebElement editor, Supplier<Map<String, Object>> currentWidgetProperties) {
@@ -74,11 +68,9 @@ public class TestWidgetInfo extends WidgetTest {
     protected void browseWork(Widget widget, WidgetStyle style, Function<ComponentProperties, WebElement> uiChanger) {
 
         ComponentProperties properties = new ComponentProperties();
-        ComponentProperties imgs = new ComponentProperties();
-        imgs.put("pcImg","1.jpg");
-        imgs.put("mobileImg",  "4.jpg");
-        imgs.put("linkUrl", "http://www.baidu.com");
-        properties.put("properties", imgs);
+        properties.put("pcImg", "1.jpg");
+        properties.put("mobileImg", "4.jpg");
+        properties.put("linkUrl", "http://www.baidu.com");
 
         WebElement webElement = uiChanger.apply(properties);
 
@@ -98,6 +90,7 @@ public class TestWidgetInfo extends WidgetTest {
 
         String href2 = a.get(1).getAttribute("href");
         assertThat(href2).isEqualToIgnoringCase("http://www.baidu.com");
+
 
     }
 
