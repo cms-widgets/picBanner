@@ -5,7 +5,7 @@
 CMSWidgets.initWidget({
 // 编辑器相关
     editor: {
-        properties: null,
+        properties: {},
         saveComponent: function (onSuccess, onFailed) {
             this.properties.linkUrl = $(".picBUrl").val();
             if(this.properties.pcImg=="" && this.properties.mobileImg==""){
