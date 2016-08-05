@@ -13,10 +13,8 @@ import com.huotu.hotcms.widget.ComponentProperties;
 import com.huotu.hotcms.widget.Widget;
 import com.huotu.hotcms.widget.WidgetStyle;
 import com.huotu.widget.test.WidgetTest;
-import com.huotu.widget.test.bean.WidgetViewController;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Map;
@@ -29,9 +27,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author CJ
  */
 public class TestWidgetInfo extends WidgetTest {
-
-    @Autowired
-    private WidgetViewController widgetViewController;
 
     @Override
     protected boolean printPageSource() {
@@ -47,12 +42,12 @@ public class TestWidgetInfo extends WidgetTest {
         }
 
         WebElement maxImg = editor.findElement(By.id("picBannerMaxImg"));
-        List<WebElement> input = maxImg.findElements(By.name("file"));
+        List<WebElement> input = maxImg.findElements(By.tagName("input"));
         assertThat(input).isNotNull();
         assertThat(input.size()).as("图片上传插件").isNotEqualTo(0);
 
         WebElement minImg = editor.findElement(By.id("picBannerMinImg"));
-        input = minImg.findElements(By.name("file"));
+        input = minImg.findElements(By.tagName("input"));
         assertThat(input).isNotNull();
         assertThat(input.size()).as("图片上传插件").isNotEqualTo(0);
         try {
@@ -90,8 +85,6 @@ public class TestWidgetInfo extends WidgetTest {
 
         String href2 = a.get(1).getAttribute("href");
         assertThat(href2).isEqualToIgnoringCase("http://www.baidu.com");
-
-
     }
 
 

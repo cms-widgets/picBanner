@@ -9,14 +9,11 @@
 
 package com.huotu.hotcms.widget.picBanner;
 
-import java.util.Locale;
-
 import com.huotu.hotcms.service.entity.support.WidgetIdentifier;
 import com.huotu.hotcms.widget.ComponentProperties;
 import com.huotu.hotcms.widget.Widget;
 import com.huotu.hotcms.widget.WidgetStyle;
 import me.jiangcai.lib.resource.service.ResourceService;
-import org.apache.http.entity.ContentType;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
@@ -140,7 +137,7 @@ public class WidgetInfo implements Widget{
                     + "/" + "thumbnail/defaultStyleThumbnail.png").httpUrl().toURI().toString());
             properties.put(VALID_MOBILE_IMG, resourceService.getResource("widget/" + identifier.toURIEncoded()
                     + "/" + "thumbnail/defaultStyleThumbnail.png").httpUrl().toURI().toString());
-            properties.put(VALID_PIC_URL, "");
+            properties.put(VALID_PIC_URL, "http://www.huobanplus.com");
         }catch (Exception e){
 
         }
