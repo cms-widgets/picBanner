@@ -24,10 +24,10 @@ CMSWidgets.initWidget({
                 maxFileCount: 1,
                 isCongruent:false,
                 successCallback: function(files, data, xhr, pd) {
-                   this.properties.pcImg= data.fileUri;
+                    editor.properties.pcImg= data.fileUri;
                 },
                 deleteCallback: function (resp, data, jqXHR) {
-                   this.properties.pcImg = "";
+                    editor.properties.pcImg = "";
                 }
             });
             uploadForm( {
@@ -38,10 +38,10 @@ CMSWidgets.initWidget({
                 maxFileCount: 1,
                 isCongruent:false,
                 successCallback: function(files, data, xhr, pd) {
-                    this.properties.mobileImg = data.fileUri;
+                    editor.properties.mobileImg = data.fileUri;
                 },
                 deleteCallback: function (resp, data, jqXHR) {
-                    this.properties.mobileImg = "";
+                    editor.properties.mobileImg = "";
                 }
             });
         },
