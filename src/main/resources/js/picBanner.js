@@ -16,6 +16,7 @@ CMSWidgets.initWidget({
             return this.properties;
         },
         uploadImage: function () {
+            var me = this;
             uploadForm({
                 ui: '#picBannerMaxImg',
                 inputName: 'file',
@@ -24,10 +25,10 @@ CMSWidgets.initWidget({
                 maxFileCount: 1,
                 isCongruent: false,
                 successCallback: function (files, data, xhr, pd) {
-                    this.properties.pcImg = data.fileUri;
+                    me.properties.pcImg = data.fileUri;
                 },
                 deleteCallback: function (resp, data, jqXHR) {
-                    this.properties.pcImg = "";
+                    me.properties.pcImg = "";
                 }
             });
             uploadForm({
@@ -38,10 +39,10 @@ CMSWidgets.initWidget({
                 maxFileCount: 1,
                 isCongruent: false,
                 successCallback: function (files, data, xhr, pd) {
-                    this.properties.mobileImg = data.fileUri;
+                    me.properties.mobileImg = data.fileUri;
                 },
                 deleteCallback: function (resp, data, jqXHR) {
-                    this.properties.mobileImg = "";
+                    me.properties.mobileImg = "";
                 }
             });
         },

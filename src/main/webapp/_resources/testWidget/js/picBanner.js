@@ -5,43 +5,44 @@
 CMSWidgets.initWidget({
 // 编辑器相关
     editor: {
-        properties: {},
+        properties: null,
         saveComponent: function (onSuccess, onFailed) {
             this.properties.linkUrl = $(".picBUrl").val();
-            if(this.properties.pcImg=="" && this.properties.mobileImg==""){
+            if (this.properties.pcImg == "" && this.properties.mobileImg == "") {
                 onFailed("组件数据缺少,未能保存,请完善。");
-                return ;
+                return;
             }
-           onSuccess(this.properties);
-           return this.properties;
+            onSuccess(this.properties);
+            return this.properties;
         },
         uploadImage: function () {
-            uploadForm( {
+            var me = this;
+            uploadForm({
                 ui: '#picBannerMaxImg',
                 inputName: 'file',
                 maxWidth: 1920,
                 maxHeight: 200,
                 maxFileCount: 1,
-                isCongruent:false,
-                successCallback: function(files, data, xhr, pd) {
-                    editor.properties.pcImg= data.fileUri;
+                isCongruent: false,
+                successCallback: function (files, data, xhr, pd) {
+                    me.properties.pcImg = data.fileUri;
                 },
                 deleteCallback: function (resp, data, jqXHR) {
-                    editor.properties.pcImg = "";
+                    me.properties.pcImg = "";
                 }
             });
-            uploadForm( {
+            uploadForm({
                 ui: '#picBannerMinImg',
                 inputName: 'file',
                 maxWidth: 1200,
                 maxHeight: 200,
                 maxFileCount: 1,
-                isCongruent:false,
-                successCallback: function(files, data, xhr, pd) {
-                    editor.properties.mobileImg = data.fileUri;
+                isCongruent: false,
+                successCallback: function (files, data, xhr, pd) {
+                    me.properties.mobileImg = data.fileUri;
                 },
                 deleteCallback: function (resp, data, jqXHR) {
-                    editor.properties.mobileImg = "";
+                    me.properties.mobileImg = "";
                 }
             });
         },
@@ -53,9 +54,9 @@ CMSWidgets.initWidget({
         open: function (globalId) {
             this.properties = widgetProperties(globalId);
             this.initProperties();
-            editor.uploadImage();
+            this.uploadImage();
         },
-        close:function(globalId){
+        close: function (globalId) {
             $('#picBannerMaxImg').siblings().remove();
             $('#picBannerMinImg').siblings().remove();
         }
