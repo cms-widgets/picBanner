@@ -56,8 +56,8 @@ CMSWidgets.initWidget({
             editor.uploadImage();
         },
         close:function(globalId){
-            $('#picBannerMaxImg').remove();
-            $('#picBannerMinImg').remove();
+            $('#picBannerMaxImg').siblings().remove();
+            $('#picBannerMinImg').siblings().remove();
         }
     }
 });
