@@ -8,6 +8,10 @@ CMSWidgets.initWidget({
         properties: null,
         saveComponent: function (onSuccess, onFailed) {
             this.properties.linkUrl = $(".picBUrl").val();
+            if (this.properties.pcImg == undefined || this.properties.mobileImg == undefined) {
+                this.properties.pcImg = $(".imgMobileImg").attr("src");
+                this.properties.mobileImg = $(".imgPcImg").attr("src");
+            }
             if (this.properties.pcImg == "" && this.properties.mobileImg == "") {
                 onFailed("组件数据缺少,未能保存,请完善。");
                 return;
@@ -46,14 +50,8 @@ CMSWidgets.initWidget({
                 }
             });
         },
-        initProperties: function () {
-            this.properties.pcImg = "";
-            this.properties.mobileImg = "";
-            this.properties.linkUrl = "";
-        },
         open: function (globalId) {
             this.properties = widgetProperties(globalId);
-            this.initProperties();
             this.uploadImage();
         },
         close: function (globalId) {

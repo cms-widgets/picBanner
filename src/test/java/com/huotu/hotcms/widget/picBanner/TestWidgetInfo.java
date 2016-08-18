@@ -48,7 +48,6 @@ public class TestWidgetInfo extends WidgetTest {
         try {
             Map map = currentWidgetProperties.get();
             assertThat(map.containsKey(WidgetInfo.VALID_PIC_URL)).isTrue();
-
         }catch (IllegalStateException ex){
             assertThat(0).as("save没有属性值返回异常").isEqualTo(0);
         }

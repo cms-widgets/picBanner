@@ -4,8 +4,10 @@
             <label class="col-sm-3 control-label">跳转链接</label>
             <div class="col-sm-9">
                 <input type="url" name="linkUrl" class="form-control picBUrl" th:value="${linkUrl}">
+
             </div>
         </div>
+
         <div class="form-group">
             <label class="col-sm-3 control-label">选择图片 - 宽度1920</label>
             <div class="col-sm-9 oneImage">
@@ -16,6 +18,14 @@
             <label class="col-sm-3 control-label">选择图片 - 宽度1200</label>
             <div class="col-sm-9 oneImage">
                 <div id="picBannerMinImg"></div>
+            </div>
+        </div>
+
+        <div class="form-group ">
+            <label class="col-sm-3 control-label">图片列表</label>
+            <div class="col-sm-9">
+                <img th:src="${mobileImg}" class="imgMobileImg"/><br/>
+                <img th:src="${pcImg}" class="imgPcImg"/>
             </div>
         </div>
     </form>
