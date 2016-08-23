@@ -31,9 +31,11 @@ public class WidgetInfo implements Widget{
      * 指定风格的模板类型 如：html,text等
      */
     public static final String VALID_STYLE_TEMPLATE = "styleTemplate";
-    public static final String VALID_PC_IMG = "pcImg";
-    public static final String VALID_MOBILE_IMG = "mobileImg";
-    public static final String VALID_PIC_URL = "linkUrl";
+    //    public static final String VALID_PC_IMG = "pcImg";
+//    public static final String VALID_MOBILE_IMG = "mobileImg";
+    public static final String VALID_LINK_URL = "linkUrl";
+    public static final String VALID_BANNER_URI = "bannerImgUri";
+    public static final String VALID_BANNER_PATH = "bannerImgPath";
 
     @Override
     public String groupId() {
@@ -102,11 +104,11 @@ public class WidgetInfo implements Widget{
     public void valid(String styleId, ComponentProperties componentProperties) throws IllegalArgumentException {
         WidgetStyle style = WidgetStyle.styleByID(this, styleId);
         //加入控件独有的属性验证
-        String pcImg = (String) componentProperties.get(VALID_PC_IMG);
-        String mobileImg = (String) componentProperties.get(VALID_MOBILE_IMG);
-        String picUrl = (String) componentProperties.get(VALID_PIC_URL);
+        String bannerImgUri = (String) componentProperties.get(VALID_BANNER_URI);
+        String bannerImgPath = (String) componentProperties.get(VALID_BANNER_PATH);
+        String picUrl = (String) componentProperties.get(VALID_LINK_URL);
 
-        if (pcImg == null || mobileImg == null || picUrl == null ||  pcImg.equals("") || mobileImg.equals("")
+        if (bannerImgUri == null || bannerImgPath == null || picUrl == null || bannerImgUri.equals("") || bannerImgPath.equals("")
                 || picUrl.equals("")){
             throw new IllegalArgumentException();
         }
@@ -122,11 +124,11 @@ public class WidgetInfo implements Widget{
         ComponentProperties properties = new ComponentProperties();
         try {
             WidgetIdentifier identifier = new WidgetIdentifier(groupId(), widgetId(), version());
-            properties.put(VALID_PC_IMG, resourceService.getResource("widget/" + identifier.toURIEncoded()
+            properties.put(VALID_BANNER_URI, resourceService.getResource("widget/" + identifier.toURIEncoded()
                     + "/" + "thumbnail/defaultStyleThumbnail.png").httpUrl().toURI().toString());
-            properties.put(VALID_MOBILE_IMG, resourceService.getResource("widget/" + identifier.toURIEncoded()
-                    + "/" + "thumbnail/defaultStyleThumbnail.png").httpUrl().toURI().toString());
-            properties.put(VALID_PIC_URL, "http://www.huobanplus.com");
+            properties.put(VALID_BANNER_PATH, "widget/" + identifier.toURIEncoded()
+                    + "/" + "thumbnail/defaultStyleThumbnail.png");
+            properties.put(VALID_LINK_URL, "http://www.huobanplus.com");
         }catch (Exception e){
 
         }

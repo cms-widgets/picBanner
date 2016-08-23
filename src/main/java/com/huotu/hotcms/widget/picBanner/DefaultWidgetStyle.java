@@ -27,13 +27,13 @@ public class DefaultWidgetStyle implements WidgetStyle{
 
     @Override
     public String name() {
-        return "bootstrap 风格";
+        return "bootstrap图片条幅";
     }
 
     @Override
     public String name(Locale locale) {
         if (locale.equals(Locale.CHINESE)) {
-            return "bootstrap 风格";
+            return name();
         }
         return "bootstrap style picBanner";
     }
