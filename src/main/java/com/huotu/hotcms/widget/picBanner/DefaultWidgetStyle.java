@@ -9,13 +9,10 @@
 
 package com.huotu.hotcms.widget.picBanner;
 
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import java.util.Locale;
-import com.huotu.hotcms.widget.Widget;
 import com.huotu.hotcms.widget.WidgetStyle;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+
 import java.util.Locale;
 
 /**
@@ -30,13 +27,13 @@ public class DefaultWidgetStyle implements WidgetStyle{
 
     @Override
     public String name() {
-        return "bootstrap 风格";
+        return "bootstrap图片条幅";
     }
 
     @Override
     public String name(Locale locale) {
         if (locale.equals(Locale.CHINESE)) {
-            return "bootstrap 风格";
+            return name();
         }
         return "bootstrap style picBanner";
     }
@@ -61,7 +58,7 @@ public class DefaultWidgetStyle implements WidgetStyle{
 
     @Override
     public Resource previewTemplate() {
-        return new ClassPathResource("/template/defaultStylePreviewTemplate.html", getClass().getClassLoader());
+        return null;
     }
 
     @Override
