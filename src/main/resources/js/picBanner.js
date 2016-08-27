@@ -10,6 +10,9 @@ CMSWidgets.initWidget({
             this.properties.linkUrl = $(".linkUrl").val();
             this.properties.bannerImgUri = $(".bannerImage").attr("src");
             this.properties.bannerImgPath = $(".bannerImage").attr("data-path");
+            this.properties.bgColor = $(".bgColor").val();
+            this.properties.marginTop = $(".marginTop").val();
+            this.properties.marginBottom = $(".marginBottom").val();
             if (this.properties.bannerImgUri == "" && this.properties.bannerImgPath == "") {
                 onFailed("组件数据缺少,未能保存,请完善。");
                 return;

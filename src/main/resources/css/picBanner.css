@@ -1,0 +1,9 @@
+/*[[${'#'+componentId+'.pic-banner' }]]*/
+{
+    background: /*[[${bgColor}]]*/ transparent
+;
+    margin-top: /*[[${marginTop+'px'}]]*/ 0px
+;
+    margin-bottom: /*[[${marginBottom+'px'}]]*/ 0px
+;
+}

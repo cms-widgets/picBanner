@@ -1,5 +1,21 @@
 <div class="borderBoxs">
-
+    <div class="form-group">
+        <label class="col-sm-3 control-label">上边距</label>
+        <div class="col-sm-3">
+            <input type="number" name="marginTop" th:value="${marginTop}" class="form-control marginTop"/>
+        </div>
+        <label class="col-sm-3 control-label">下边距</label>
+        <div class="col-sm-3">
+            <input type="number" name="marginBottom" th:value="${marginBottom}" class="form-control marginBottom"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">背景颜色</label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control color-picker bgColor" th:value="${bgColor}" name="bgColor"
+                   data-type="backgroundColor"/>
+        </div>
+    </div>
     <div class="addEditBox row">
         <div class="col-xs-3 mb10">
             <img class="img-responsive img-thumbnail center-block js-image bannerImage"
