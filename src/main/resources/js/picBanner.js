@@ -22,7 +22,7 @@ CMSWidgets.initWidget({
         },
         initProperties: function () {
             $('.js-addEditBtn').addEdit({
-                amount: 6,
+                amount: 1,
                 title: 'banner',
                 hasImage: true,
                 imageClass: 'bannerImage',
