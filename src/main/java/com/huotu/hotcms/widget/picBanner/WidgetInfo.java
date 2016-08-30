@@ -105,10 +105,9 @@ public class WidgetInfo implements Widget {
         //加入控件独有的属性验证
         String bannerImgUri = (String) componentProperties.get(VALID_BANNER_URI);
         String bannerImgPath = (String) componentProperties.get(VALID_BANNER_PATH);
-        String picUrl = (String) componentProperties.get(VALID_LINK_URL);
+//        String picUrl = (String) componentProperties.get(VALID_LINK_URL);
 
-        if (bannerImgUri == null || bannerImgPath == null || picUrl == null || bannerImgUri.equals("") || bannerImgPath.equals("")
-                || picUrl.equals("")) {
+        if (bannerImgUri == null || bannerImgPath == null || bannerImgUri.equals("") || bannerImgPath.equals("")) {
             throw new IllegalArgumentException();
         }
     }

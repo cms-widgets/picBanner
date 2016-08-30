@@ -31,7 +31,7 @@ public class TestWidgetInfo extends WidgetTest {
 
     @Override
     protected boolean printPageSource() {
-        return false;
+        return true;
     }
 
     @Override
