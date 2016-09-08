@@ -26,16 +26,13 @@ import java.util.Map;
 /**
  * @author CJ
  */
-public class WidgetInfo implements Widget{
-    /*
-     * 指定风格的模板类型 如：html,text等
-     */
-    public static final String VALID_STYLE_TEMPLATE = "styleTemplate";
-    //    public static final String VALID_PC_IMG = "pcImg";
-//    public static final String VALID_MOBILE_IMG = "mobileImg";
+public class WidgetInfo implements Widget {
     public static final String VALID_LINK_URL = "linkUrl";
     public static final String VALID_BANNER_URI = "bannerImgUri";
     public static final String VALID_BANNER_PATH = "bannerImgPath";
+    public static final String MARGIN_TOP = "marginTop";
+    public static final String MARGIN_BOTTOM = "marginBottom";
+    public static final String BG_COLOR = "bgColor";
 
     @Override
     public String groupId() {
@@ -81,19 +78,21 @@ public class WidgetInfo implements Widget{
     }
 
 
-
     @Override
     public Map<String, Resource> publicResources() {
         Map<String, Resource> map = new HashMap<>();
-        map.put("thumbnail/defaultStyleThumbnail.png",new ClassPathResource("thumbnail/defaultStyleThumbnail.png",getClass().getClassLoader()));
-        map.put("thumbnail.png",new ClassPathResource("thumbnail.png",getClass().getClassLoader()));
-        map.put("js/picBanner.js",new ClassPathResource("js/picBanner.js",getClass().getClassLoader()));
+        map.put("thumbnail/defaultStyleThumbnail.png", new ClassPathResource("thumbnail/defaultStyleThumbnail.png", getClass().getClassLoader()));
+        map.put("thumbnail.png", new ClassPathResource("thumbnail.png", getClass().getClassLoader()));
+        map.put("js/picBanner.js", new ClassPathResource("js/picBanner.js", getClass().getClassLoader()));
         return map;
     }
 
     @Override
     public Resource widgetDependencyContent(MediaType mediaType) {
-        if (mediaType.isCompatibleWith(Javascript)){
+        if (mediaType.isCompatibleWith(CSS)) {
+            return new ClassPathResource("css/picBanner.css", getClass().getClassLoader());
+        }
+        if (mediaType.isCompatibleWith(Javascript)) {
             return new ClassPathResource("js/picBanner.js", getClass().getClassLoader());
         }
         return null;
@@ -106,10 +105,9 @@ public class WidgetInfo implements Widget{
         //加入控件独有的属性验证
         String bannerImgUri = (String) componentProperties.get(VALID_BANNER_URI);
         String bannerImgPath = (String) componentProperties.get(VALID_BANNER_PATH);
-        String picUrl = (String) componentProperties.get(VALID_LINK_URL);
+//        String picUrl = (String) componentProperties.get(VALID_LINK_URL);
 
-        if (bannerImgUri == null || bannerImgPath == null || picUrl == null || bannerImgUri.equals("") || bannerImgPath.equals("")
-                || picUrl.equals("")){
+        if (bannerImgUri == null || bannerImgPath == null || bannerImgUri.equals("") || bannerImgPath.equals("")) {
             throw new IllegalArgumentException();
         }
     }
@@ -129,8 +127,11 @@ public class WidgetInfo implements Widget{
             properties.put(VALID_BANNER_PATH, "widget/" + identifier.toURIEncoded()
                     + "/" + "thumbnail/defaultStyleThumbnail.png");
             properties.put(VALID_LINK_URL, "http://www.huobanplus.com");
-        }catch (Exception e){
 
+            properties.put(MARGIN_TOP, 0);
+            properties.put(MARGIN_BOTTOM, 0);
+            properties.put(BG_COLOR, "transparent");
+        } catch (Exception e) {
         }
         return properties;
     }
