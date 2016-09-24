@@ -16,31 +16,37 @@
                    data-type="backgroundColor"/>
         </div>
     </div>
-    <div class="addEditBox row">
-        <div class="col-xs-3 mb10">
-            <img class="img-responsive img-thumbnail center-block js-image bannerImage"
-                 src="http://placehold.it/80x80?text=banner"
-                 th:src="${bannerImgUri}" th:data-path="${bannerImgPath}"/>
+    <div class="form-group clearfix">
+        <label class="col-sm-3 control-label">图库</label>
+        <div class="col-sm-9">
+            <span data-name="serial" class="gallery-content"></span>
+            <div data-name="serial" class="gallery-item-area">
+                <!--img item-->
+                <img src="!{url}" title="是!{title}么?"/>
+            </div>
         </div>
+    </div>
+    <div class="addEditBox row">
         <div class="form-inline col-xs-9 row mb10">
-            <div class="col-xs-12 mb10">
-                <label class="mr6">链接：</label>
+            <div class="col-xs-12 mb10 "><label class="mr6">链接：</label>
                 <select class="form-control mr6 js-get-source">
                     <option value="noUrl">不添加链接</option>
-                    <option value="6">页面资源</option>
                     <option value="0">文章资源</option>
                     <option value="1">链接资源</option>
                     <option value="2">视频资源</option>
                     <option value="3">公告资源</option>
+                    <option value="4">图片资源</option>
                     <option value="5">下载资源</option>
+                    <option value="6">页面资源</option>
                     <option value="custom">自定义链接</option>
                 </select>
-                <input class="form-control linkUrl" type="url" name="url" placeholder="图文链接" th:value="${linkUrl}">
+                <input class="form-control linkUrl" type="text" name="url" placeholder="图片" th:value="${linkUrl}">
             </div>
         </div>
     </div>
     <button class="js-addEditBtn btn btn-default" type="button"><i class="fa fa-plus-circle" aria-hidden="true"></i>添加数据
     </button>
+
 </div>
 
 
