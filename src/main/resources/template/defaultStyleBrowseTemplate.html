@@ -1,5 +1,5 @@
 <div class="pic-banner" th:id="${componentId}">
-    <a th:src="${linkUrl}" th:each="item:${dataList}">
+    <a th:href="${linkUrl}" href="javascript:;" th:each="item:${dataList}">
         <img res:src="${item.thumbUri}"
                                  class="img-responsive center-block">
     </a>
