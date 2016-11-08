@@ -16,16 +16,6 @@
                    data-type="backgroundColor"/>
         </div>
     </div>
-    <div class="form-group clearfix">
-        <label class="col-sm-3 control-label">图库</label>
-        <div class="col-sm-9">
-            <span data-name="serial" class="gallery-content"></span>
-            <div data-name="serial" class="gallery-item-area">
-                <!--img item-->
-                <img src="!{url}" title="是!{title}么?"/>
-            </div>
-        </div>
-    </div>
     <div class="addEditBox row">
         <div class="form-inline col-xs-9 row mb10">
             <div class="col-xs-12 mb10 "><label class="mr6">链接：</label>
@@ -41,6 +31,16 @@
                     <option value="custom">自定义链接</option>
                 </select>
                 <input class="form-control linkUrl" type="text" name="url" placeholder="图片" th:value="${linkUrl}">
+            </div>
+        </div>
+    </div>
+    <div class="form-group clearfix">
+        <label class="col-sm-3 control-label">图库</label>
+        <div class="col-sm-9">
+            <span data-name="serial" class="gallery-content"></span>
+            <div data-name="serial" class="gallery-item-area">
+                <!--img item-->
+                <img src="!{url}" title="是!{title}么?"/>
             </div>
         </div>
     </div>
