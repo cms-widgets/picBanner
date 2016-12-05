@@ -6,7 +6,6 @@ CMSWidgets.initWidget({
 // 编辑器相关
     editor: {
         saveComponent: function (onFailed) {
-            this.properties.linkUrl = $(".linkUrl").val();
             this.properties.bgColor = $(".bgColor").val();
             this.properties.marginTop = $(".marginTop").val();
             this.properties.marginBottom = $(".marginBottom").val();

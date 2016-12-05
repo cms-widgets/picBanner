@@ -1,6 +1,16 @@
 <div class="pic-banner" th:id="${componentId}">
-    <a th:href="${linkUrl}" href="javascript:;" th:each="item:${dataList}">
+    <a th:if="${link!=null and link.linkType.isPage()}" th:href="@{/${link.pagePath}}" href="javascript:;"
+       th:each="item:${dataList}">
+        <img res:src="${item.thumbUri}"
+             class="img-responsive center-block">
+    </a>
+    <a th:if="${link!=null and !link.linkType.isPage()}" th:href="${link.linkUrl}" href="javascript:;"
+       th:each="item:${dataList}">
         <img res:src="${item.thumbUri}"
                                  class="img-responsive center-block">
+    </a>
+    <a th:if="${link==null}" href="javascript:;" th:each="item:${dataList}">
+        <img res:src="${item.thumbUri}"
+             class="img-responsive center-block">
     </a>
 </div>

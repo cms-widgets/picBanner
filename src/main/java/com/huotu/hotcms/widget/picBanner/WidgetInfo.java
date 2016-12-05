@@ -13,14 +13,18 @@ import com.huotu.hotcms.service.common.ContentType;
 import com.huotu.hotcms.service.entity.Category;
 import com.huotu.hotcms.service.entity.Gallery;
 import com.huotu.hotcms.service.entity.GalleryItem;
+import com.huotu.hotcms.service.entity.Link;
 import com.huotu.hotcms.service.model.GalleryItemModel;
 import com.huotu.hotcms.service.repository.CategoryRepository;
 import com.huotu.hotcms.service.repository.GalleryRepository;
+import com.huotu.hotcms.service.repository.LinkRepository;
 import com.huotu.hotcms.service.service.CategoryService;
 import com.huotu.hotcms.service.service.ContentService;
 import com.huotu.hotcms.service.service.GalleryItemService;
 import com.huotu.hotcms.service.service.GalleryService;
 import com.huotu.hotcms.widget.*;
+import com.huotu.hotcms.widget.entity.PageInfo;
+import com.huotu.hotcms.widget.repository.PageInfoRepository;
 import com.huotu.hotcms.widget.service.CMSDataSourceService;
 import me.jiangcai.lib.resource.service.ResourceService;
 import org.springframework.core.io.ClassPathResource;
@@ -41,6 +45,7 @@ public class WidgetInfo implements Widget, PreProcessWidget {
     public static final String MARGIN_BOTTOM = "marginBottom";
     public static final String BG_COLOR = "bgColor";
     public static final String SERIAL = "serial";
+    public static final String LINK_SERIAL = "linkSerial";
     public static final String VALID_DATA_LIST = "dataList";
 
     @Override
@@ -151,6 +156,22 @@ public class WidgetInfo implements Widget, PreProcessWidget {
                 .getBean(CMSDataSourceService.class);
         List<GalleryItemModel> picImg = cmsDataSourceService.findGalleryItems(serial, 1);
         variables.put(VALID_DATA_LIST, picImg);
+        String linkSerial = (String) properties.get(LINK_SERIAL);
+        if (linkSerial != null) {
+            LinkRepository linkRepository = getCMSServiceFromCMSContext(LinkRepository.class);
+            Link link = linkRepository.findByCategory_SiteAndSerial(CMSContext.RequestContext().getSite(), linkSerial);
+            if (link.getLinkType().isPage()) {
+                PageInfoRepository pageInfoRepository = getCMSServiceFromCMSContext(PageInfoRepository.class);
+                PageInfo pageInfo = pageInfoRepository.findOne(link.getPageInfoID());
+                if (pageInfo != null)
+                    link.setPagePath(pageInfo.getPagePath());
+                else
+                    link.setPagePath("#");
+            }
+            variables.put("link", link);
+        } else {
+            variables.put("link", null);
+        }
     }
 
 
