@@ -69,15 +69,16 @@ public class WidgetInfo implements Widget, PreProcessWidget {
 
     @Override
     public String description() {
-        return "这是一个图片条幅，你可以对组件进行自定义修改。";
+        return "图片条幅控件，展示一个图库数据源的图片，可以设置图片的链接内容，及上下边距和背景色";
     }
 
     @Override
     public String description(Locale locale) {
         if (locale.equals(Locale.CHINA)) {
-            return "这是一个图片条幅，你可以对组件进行自定义修改。";
+            return description();
         }
-        return "This is a picBanner,  you can make custom change the component.";
+        return "The picture scroll controls, display a picture gallery data source, link content can set the picture," +
+                " and the upper and lower margins and background color";
     }
 
     @Override

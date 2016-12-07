@@ -40,7 +40,8 @@ public class DefaultWidgetStyle implements WidgetStyle{
 
     @Override
     public String description() {
-        return "基于bootstrap样式的图片条幅";
+        return "默认的样式，该样式展示了图库下的若干个图片，并且每个图片的链接为用户选择的链接内容，" +
+                "如果没有选择连接内容，图片则不具备链接功能";
     }
 
     @Override
@@ -48,7 +49,9 @@ public class DefaultWidgetStyle implements WidgetStyle{
         if (locale.equals(Locale.CHINA)) {
             return description();
         }
-        return "Based on the bootstrap style by picBanner";
+        return "The default style, the style shows a number of pictures gallery, " +
+                "and the link to each picture for the user to choose the link content, " +
+                "if you do not choose the contents of the connection, the picture does not have the link function";
     }
 
     @Override
